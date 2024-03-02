@@ -108,4 +108,17 @@ class CPU {
     const instruction = this.fetch();
     return this.exicute(instruction);
   }
+  debug() {
+    run(steps);
+    {
+      for (let i = 0; i < steps; i++) {
+        this.step();
+        if (this.step() == -1) {
+          this.registers.set("ip", 0);
+        } else if (this.step() == -2) {
+          this.registers.set("ip", this.registers.get("ip") + 1);
+        }
+      }
+    }
+  }
 }
